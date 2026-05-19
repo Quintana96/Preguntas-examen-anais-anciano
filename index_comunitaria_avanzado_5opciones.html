@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1d4ed8">
+<title>Entrenamiento avanzado - Enfermería Comunitaria II</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--primary:#1d4ed8;--primary-soft:#dbeafe;--ok:#15803d;--okbg:#dcfce7;--bad:#b91c1c;--badbg:#fee2e2;--warn:#a16207;--warnbg:#fef3c7;--border:#e5e7eb}
+*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}body{margin:0;min-height:100dvh;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(135deg,#dbeafe,#f8fafc 55%,#eef2ff);color:var(--text);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}button{font:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.app{width:min(1040px,94vw);margin:0 auto;padding:30px 0 calc(30px + env(safe-area-inset-bottom))}.hero,.card,.stat{background:var(--card);border:1px solid var(--border);box-shadow:0 18px 42px #1f293714}.hero{border-radius:26px;padding:28px;margin-bottom:16px}.hero h1{margin:0 0 8px;font-size:clamp(1.65rem,4vw,2.55rem);letter-spacing:-.03em}.hero p{margin:0;color:var(--muted);font-size:1.02rem;line-height:1.55}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.stat{border-radius:18px;padding:16px}.label{color:var(--muted);font-size:.84rem}.value{font-size:1.32rem;font-weight:850}.card{border-radius:26px;padding:26px}.topline{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}.pill{background:var(--primary-soft);color:#1e3a8a;border-radius:999px;padding:8px 12px;font-weight:800;font-size:.9rem}.progress-wrap{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:12px 0 22px}.progress{height:100%;background:var(--primary);width:0%;transition:.25s}.question-title{margin:0 0 18px;font-size:clamp(1.22rem,2.5vw,1.6rem);line-height:1.34}.options{display:grid;gap:12px}.option{width:100%;display:flex;align-items:flex-start;gap:12px;text-align:left;padding:15px 16px;border:2px solid var(--border);border-radius:16px;background:white;cursor:pointer;font-size:1rem;line-height:1.45;min-height:50px}.option:hover:not(:disabled){border-color:#93c5fd;background:#eff6ff}.option:disabled{cursor:default}.letter{flex:0 0 auto;width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:#f3f4f6;font-weight:900}.correct{border-color:var(--ok)!important;background:var(--okbg)!important}.incorrect{border-color:var(--bad)!important;background:var(--badbg)!important}.feedback{margin-top:18px;padding:16px;border-radius:16px;border:1px solid var(--border);background:#f9fafb;display:none;line-height:1.5}.feedback.visible{display:block}.feedback.ok{border-color:#86efac;background:var(--okbg)}.feedback.bad{border-color:#fecaca;background:var(--badbg)}.feedback.warn{border-color:#facc15;background:var(--warnbg)}.controls{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}.action{border:0;border-radius:14px;padding:12px 18px;font-weight:900;cursor:pointer;font-size:.98rem}.action:disabled{opacity:.45;cursor:not-allowed}.primary{background:var(--primary);color:#fff}.secondary{background:#e5e7eb;color:#111827}.ghost{background:transparent;color:var(--primary);border:1px solid #93c5fd!important}.results{display:none}.results.visible{display:block}.score-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:20px 0}.score-box{border:1px solid var(--border);border-radius:18px;padding:18px;background:#f9fafb}.big{font-size:clamp(2rem,6vw,3rem);font-weight:950}.notice{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;border-radius:16px;padding:14px 16px;margin-top:16px}.review{margin-top:24px;display:grid;gap:12px}.review-item{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;line-height:1.48}.review-item.correct{border-color:#86efac;background:#f0fdf4}.review-item.incorrect{border-color:#fecaca;background:#fef2f2}.review-item.unanswered{border-color:#facc15;background:#fefce8}.hidden{display:none!important}.toolrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.select{border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:white;color:var(--text);font-weight:700;max-width:100%}.mini{font-size:.9rem;color:var(--muted);margin-top:8px}
+@media(max-width:720px){.app{width:100%;padding:14px 10px calc(14px + env(safe-area-inset-bottom))}.hero,.card{padding:18px 14px;border-radius:20px}.hero h1{font-size:1.32rem;line-height:1.18}.hero p{font-size:.95rem}.stats{position:sticky;top:0;z-index:10;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:10px 0 12px;padding:8px 0;background:linear-gradient(135deg,#dbeafe,#f8fafc 55%,#eef2ff)}.stat{border-radius:14px;padding:9px 7px;min-width:0}.label{font-size:.68rem;white-space:nowrap}.value{font-size:.95rem;line-height:1.1;word-break:break-word}.pill{font-size:.78rem;padding:7px 10px}.question-title{font-size:1.08rem}.option{padding:13px 12px;border-radius:14px;font-size:.96rem}.letter{width:28px;height:28px;border-radius:9px}.controls{position:sticky;bottom:0;z-index:8;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-left:-14px;margin-right:-14px;margin-bottom:-18px;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);border-top:1px solid var(--border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:0 0 20px 20px}.controls .action{width:100%;padding:12px 10px;font-size:.92rem}#nextBtn,#restartBtn{grid-column:1 / -1}.score-grid{grid-template-columns:1fr}.option:hover:not(:disabled){border-color:var(--border);background:white}}
+@media(max-width:420px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.label{font-size:.72rem}.value{font-size:1.05rem}.hero h1{font-size:1.2rem}}
+</style>
+</head>
+<body>
+<main class="app">
+  <section class="hero">
+    <h1>Entrenamiento avanzado - Enfermería Comunitaria II</h1>
+    <p>124 preguntas de respuesta única, con 5 opciones por pregunta y distractores más exigentes. Penalización tipo test: acierto +1, fallo -0,25, sin responder 0.</p>
+    <div class="toolrow">
+      <select class="select" id="topicFilter" aria-label="Filtrar por tema"><option value="todos">Todos los temas</option></select>
+      <button class="action ghost" id="shuffleBtn" type="button">Mezclar preguntas</button>
+    </div>
+    <div class="mini">Consejo: haz primero una vuelta completa y luego usa la revisión para detectar patrones de error.</div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><div class="label">Pregunta</div><div class="value" id="questionCounter"></div></div>
+    <div class="stat"><div class="label">Aciertos</div><div class="value" id="correctCounter">0</div></div>
+    <div class="stat"><div class="label">Fallos</div><div class="value" id="wrongCounter">0</div></div>
+    <div class="stat"><div class="label">Sin responder</div><div class="value" id="unansweredCounter"></div></div>
+  </section>
+
+  <section class="card" id="quizCard">
+    <div class="topline"><span class="pill" id="topicPill"></span><span class="pill" id="progressText"></span></div>
+    <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
+    <h2 class="question-title" id="questionText"></h2>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="controls">
+      <button class="action secondary" id="prevBtn">Anterior</button>
+      <button class="action ghost" id="skipBtn">Dejar sin responder</button>
+      <button class="action primary" id="nextBtn">Siguiente</button>
+    </div>
+  </section>
+
+  <section class="card results" id="resultsCard">
+    <h2 class="question-title">Resultado final</h2>
+    <div class="score-grid">
+      <div class="score-box"><div class="label" id="totalLabel"></div><div class="big" id="scoreTotal"></div></div>
+      <div class="score-box"><div class="label">Nota sobre 10</div><div class="big" id="score10"></div></div>
+    </div>
+    <div id="summaryText"></div>
+    <div class="notice">Fórmula: <strong>nota = aciertos - (fallos × 0,25)</strong>. Si el resultado es negativo, se muestra 0.</div>
+    <div class="controls">
+      <button class="action secondary" id="reviewBtn">Ver revisión</button>
+      <button class="action primary" id="restartBtn">Reiniciar test</button>
+    </div>
+    <div class="review hidden" id="reviewList"></div>
+  </section>
+</main>
+<script>
+const bancoPreguntas = [
+  {
+    "id": 1,
+    "tema": "Tema 1 - Crónicas y prevención",
+    "pregunta": "En vigilancia epidemiológica, ¿qué combinación diferencia mejor una enfermedad crónica de una aguda según los apuntes?",
+    "opciones": [
+      "Periodo de incubación corto, notificación individual urgente y análisis diario.",
+      "Etiología siempre infecciosa y presentación en brotes explosivos.",
+      "Tratamiento curativo breve, recuperación completa y ausencia de incapacidad.",
+      "Aparición semanal, interés principal por localizar al paciente cero y diseminación frecuente.",
+      "Periodo de latencia largo, uso de registros poblacionales y cambios observables a largo plazo."
+    ],
+    "correcta": "E",
+    "explicacion": "Las crónicas se caracterizan por latencia larga, análisis poblacional y tendencias que precisan largos periodos de observación."
+  },
+  {
+    "id": 2,
+    "tema": "Tema 1 - Crónicas y prevención",
+    "pregunta": "Una intervención que intenta detectar lesiones celulares ya presentes, antes de signos clínicos, corresponde sobre todo a:",
+    "opciones": [
+      "Prevención secundaria en periodo subclínico.",
+      "Rehabilitación en fase de incapacidad.",
+      "Prevención primordial en fase resolutiva.",
+      "Prevención primaria en periodo prepatogénico.",
+      "Prevención terciaria en periodo prodrómico."
+    ],
+    "correcta": "A",
+    "explicacion": "La prevención secundaria busca diagnosticar precozmente, idealmente en la fase subclínica."
+  },
+  {
+    "id": 3,
+    "tema": "Tema 1 - Crónicas y prevención",
+    "pregunta": "¿Cuál de las siguientes parejas está correctamente clasificada como marcador de riesgo y factor de riesgo, respectivamente?",
+    "opciones": [
+      "Hipertensión y sexo masculino.",
+      "Edad avanzada y tabaquismo.",
+      "Obesidad y sexo masculino.",
+      "Sedentarismo y predisposición genética.",
+      "Colesterol LDL alto y edad."
+    ],
+    "correcta": "B",
+    "explicacion": "Los marcadores no se modifican, como la edad; los factores modificables se asocian al estilo de vida, como el tabaco."
+  },
+  {
+    "id": 4,
+    "tema": "Tema 1 - Cardiovascular",
+    "pregunta": "En las enfermedades cardiovasculares de mayor morbimortalidad, los apuntes destacan especialmente:",
+    "opciones": [
+      "Cardiopatía congénita, trombosis venosa y arritmias supraventriculares.",
+      "Flebitis superficial, linfedema y síncope vasovagal.",
+      "Insuficiencia cardiaca, cardiopatía reumática y enfermedad vascular periférica.",
+      "Miocarditis viral, endocarditis y aneurisma aórtico.",
+      "Cardiopatía isquémica, enfermedad cerebrovascular e hipertensiva."
+    ],
+    "correcta": "E",
+    "explicacion": "La cardiopatía isquémica, los ictus/enfermedad cerebrovascular y la enfermedad hipertensiva son señaladas como las tres de mayor morbimortalidad."
+  },
+  {
+    "id": 5,
+    "tema": "Tema 1 - Cardiovascular",
+    "pregunta": "¿Qué opción resume mejor la lesión endotelial que origina enfermedad cardiovascular en los apuntes?",
+    "opciones": [
+      "Se asocia a HTA, hipoxia por CO del tabaco, colesterol/grasas y sustancias vasoactivas como adrenalina.",
+      "Se produce solo cuando hay obesidad mórbida con apnea del sueño.",
+      "Depende únicamente de la edad y no de factores modificables.",
+      "Es consecuencia exclusiva de déficit de HDL por causas genéticas.",
+      "Aparece solo por infección bacteriana persistente del endotelio."
+    ],
+    "correcta": "A",
+    "explicacion": "Los apuntes relacionan la lesión del endotelio con presión arterial, hipoxia por CO, lípidos y sustancias vasoactivas."
+  },
+  {
+    "id": 6,
+    "tema": "Tema 1 - Cardiovascular",
+    "pregunta": "Un varón de 48 años, fumador, con LDL elevado y diabetes tiene varios factores de riesgo cardiovascular mayores. ¿Cuál sería el intruso si solo se piden “mayores o causales”?",
+    "opciones": [
+      "Diabetes.",
+      "Hipertensión arterial.",
+      "Estrés.",
+      "Colesterol elevado.",
+      "Tabaquismo."
+    ],
+    "correcta": "C",
+    "explicacion": "Los mayores o causales son tabaco, HTA, colesterol y diabetes; el estrés aparece como menor o predisponente."
+  },
+  {
+    "id": 7,
+    "tema": "Tema 1 - Tabaquismo cardiovascular",
+    "pregunta": "¿Cuál es la afirmación más precisa sobre el tabaco como factor cardiovascular?",
+    "opciones": [
+      "Es fuerte, independiente, dosis dependiente y aumenta muerte súbita e IAM en menores de 50 años.",
+      "Solo aumenta el riesgo si coexiste con obesidad o diabetes.",
+      "Tras dejarlo, todos los riesgos respiratorios y cardiovasculares se igualan inmediatamente.",
+      "Aumenta HDL y reduce LDL, pero favorece coagulación.",
+      "No afecta a fumadores pasivos."
+    ],
+    "correcta": "A",
+    "explicacion": "El tabaquismo se describe como fuerte, independiente y dosis dependiente; además aumenta mucho el riesgo de muerte súbita e IAM en menores de 50 años."
+  },
+  {
+    "id": 8,
+    "tema": "Tema 1 - Hipertensión arterial",
+    "pregunta": "Según los apuntes, ¿qué asociación sobre HTA es correcta?",
+    "opciones": [
+      "HTA se define desde 140/90 y aproximadamente el 95% es esencial o primaria.",
+      "HTA es más frecuente en menores de 20 años que en mayores de 60.",
+      "HTA se define desde 130/80 y la mayoría es secundaria.",
+      "HTA esencial representa el 5% y se debe a enfermedad renal.",
+      "HTA se define desde 160/100 y siempre causa dolor precoz."
+    ],
+    "correcta": "A",
+    "explicacion": "Se considera HTA igual o por encima de 140/90; la mayoría de casos son esenciales o primarios."
+  },
+  {
+    "id": 9,
+    "tema": "Tema 1 - Hipertensión arterial",
+    "pregunta": "En prevención secundaria de la HTA, ¿qué opción encaja mejor con los apuntes?",
+    "opciones": [
+      "Denervación renal como primera opción poblacional.",
+      "No medir la TA hasta que aparezca daño de órgano diana.",
+      "Sustituir toda intervención dietética por cirugía.",
+      "Detección precoz, tratamiento/control y modificación de estilos de vida, incluyendo restricción de sodio y/o potasio.",
+      "Solo educación poblacional antes de que exista HTA."
+    ],
+    "correcta": "D",
+    "explicacion": "La prevención secundaria combina detección, control/tratamiento, cambios de estilo de vida y medidas sobre sodio/potasio."
+  },
+  {
+    "id": 10,
+    "tema": "Tema 1 - Dislipemia",
+    "pregunta": "¿Qué combinación de objetivos lipídicos se ajusta mejor a los apuntes?",
+    "opciones": [
+      "HDL <40, LDL >190 y triglicéridos <50.",
+      "Colesterol total >240, LDL >160 y triglicéridos >200.",
+      "Colesterol total indiferente si el HDL es bajo.",
+      "Colesterol total <=200, triglicéridos <150 y HDL >40.",
+      "LDL siempre <55 en toda persona sin riesgo cardiovascular."
+    ],
+    "correcta": "D",
+    "explicacion": "Los apuntes recogen colesterol total <=200, triglicéridos <150 y HDL >40 como cifras deseables generales."
+  },
+  {
+    "id": 11,
+    "tema": "Tema 1 - Dislipemia",
+    "pregunta": "Si se compara colesterol total/HDL frente a LDL/HDL, ¿qué afirmación es correcta según los índices aterogénicos descritos?",
+    "opciones": [
+      "La lipoproteína A elevada reduce el riesgo cardiovascular.",
+      "Total/HDL >10 es normal y LDL/HDL no se usa.",
+      "LDL/HDL >1 indica siempre muy bajo riesgo.",
+      "Los índices son peores predictores que cualquier lipoproteína aislada.",
+      "Total/HDL >4 y LDL/HDL >3 se consideran de alto riesgo cardiovascular."
+    ],
+    "correcta": "E",
+    "explicacion": "El índice aterogénico 1 es colesterol total/HDL y se considera alto riesgo si >4; el 2 es LDL/HDL y alto riesgo si >3."
+  },
+  {
+    "id": 12,
+    "tema": "Tema 1 - Dislipemia",
+    "pregunta": "¿Qué conjunto tendería a aumentar el HDL según los apuntes?",
+    "opciones": [
+      "Colesterol LDL, TG y estrés.",
+      "Tabaco, obesidad y ácidos grasos trans.",
+      "Hipertensión, CO y obesidad abdominal.",
+      "Sedentarismo, alcohol elevado y grasas trans.",
+      "Ácidos grasos insaturados, ejercicio físico y estrógenos."
+    ],
+    "correcta": "E",
+    "explicacion": "Los ácidos grasos insaturados, el ejercicio físico y los estrógenos elevan HDL; tabaco, obesidad y trans lo disminuyen."
+  },
+  {
+    "id": 13,
+    "tema": "Tema 1 - Obesidad cardiovascular",
+    "pregunta": "En la relación obesidad-riesgo cardiovascular, ¿qué opción integra mejor los mecanismos de los apuntes?",
+    "opciones": [
+      "Protege frente a hipertrofia ventricular izquierda.",
+      "No modifica coagulación ni apnea del sueño.",
+      "Reduce triglicéridos y presión arterial, pero aumenta HDL.",
+      "Solo afecta al riesgo por limitación mecánica, no metabólica.",
+      "Disminuye HDL y aumenta LDL, TG, TA, resistencia a la insulina y riesgo de diabetes."
+    ],
+    "correcta": "E",
+    "explicacion": "La obesidad empeora perfil lipídico, TA, resistencia a la insulina, diabetes, hipertrofia ventricular izquierda, coagulación y apnea del sueño."
+  },
+  {
+    "id": 14,
+    "tema": "Tema 1 - Alcohol y cardiovascular",
+    "pregunta": "Sobre alcohol y riesgo cardiovascular, ¿qué lectura es la más ajustada a los apuntes?",
+    "opciones": [
+      "Solo tiene efecto cardiovascular en mujeres.",
+      "El efecto protector se atribuye a una bajada intensa del HDL.",
+      "El alcohol siempre disminuye trombos y por eso no incrementa riesgo en dosis altas.",
+      "Todo consumo reduce tanto cardiopatía isquémica como ictus.",
+      "El consumo moderado/bajo podría asociarse a menor cardiopatía isquémica, pero no a menor ictus; consumos altos aumentan riesgo."
+    ],
+    "correcta": "E",
+    "explicacion": "Se describe posible reducción de cardiopatía isquémica con consumo bajo/moderado, no de ictus, y aumento del riesgo con dosis mayores."
+  },
+  {
+    "id": 15,
+    "tema": "Tema 1 - Actividad física cardiovascular",
+    "pregunta": "¿Cuál de las siguientes afirmaciones sobre pasos diarios coincide con los apuntes?",
+    "opciones": [
+      "Solo importa la intensidad, no el número de pasos.",
+      "Se menciona asociación inversa: más pasos, menor mortalidad, con puntos de corte de 3.867 para todas las causas y 2.337 para cardiovascular.",
+      "El punto de corte señalado para mortalidad cardiovascular es superior al de mortalidad por todas las causas.",
+      "El sedentarismo no se relaciona con mortalidad cardiovascular.",
+      "Por debajo de 10.000 pasos no existe ningún beneficio."
+    ],
+    "correcta": "B",
+    "explicacion": "Los apuntes mencionan asociación inversa y citan 3.867 pasos/día para mortalidad total y 2.337 para mortalidad cardiovascular."
+  },
+  {
+    "id": 16,
+    "tema": "Tema 2 - Prevención del cáncer",
+    "pregunta": "¿Qué afirmación distingue correctamente “enfermedad genética” de “hereditaria” en cáncer según el tema?",
+    "opciones": [
+      "El cáncer implica mutaciones en genes de control celular, pero no necesariamente herencia familiar.",
+      "Solo los cánceres infecciosos son genéticos.",
+      "Todo cáncer es hereditario porque todos los tumores se heredan.",
+      "La herencia familiar explica la mayoría absoluta de tumores.",
+      "Las mutaciones ambientales no cuentan como genéticas."
+    ],
+    "correcta": "A",
+    "explicacion": "El cáncer es genético por las mutaciones, pero no por ello es hereditario."
+  },
+  {
+    "id": 17,
+    "tema": "Tema 2 - Prevención del cáncer",
+    "pregunta": "La tabla de incidencia en España de los apuntes coloca en primer lugar total, hombres y mujeres, respectivamente:",
+    "opciones": [
+      "Vejiga, pulmón, colorrectal.",
+      "Próstata, próstata, útero.",
+      "Colorrectal, próstata, mama.",
+      "Pulmón, pulmón, mama.",
+      "Mama, colorrectal, pulmón."
+    ],
+    "correcta": "C",
+    "explicacion": "La incidencia total aparece encabezada por colorrectal; en hombres por próstata y en mujeres por mama."
+  },
+  {
+    "id": 18,
+    "tema": "Tema 2 - Prevención del cáncer",
+    "pregunta": "En la tabla de mortalidad por cáncer en España, el primer puesto total y en hombres corresponde a:",
+    "opciones": [
+      "Mama en ambos.",
+      "Páncreas en total y próstata en hombres.",
+      "Hígado en total y pulmón en hombres.",
+      "Colorrectal en ambos.",
+      "Pulmón en ambos."
+    ],
+    "correcta": "E",
+    "explicacion": "Los apuntes sitúan el cáncer de pulmón como primera causa de mortalidad total y en hombres."
+  },
+  {
+    "id": 19,
+    "tema": "Tema 2 - Tabaco y cáncer",
+    "pregunta": "¿Qué afirmación sobre formas de consumo de tabaco y localización tumoral es más fina?",
+    "opciones": [
+      "El riesgo por número de cigarrillos tiene un umbral seguro claro.",
+      "El tabaco pasivo solo se asocia a cáncer de piel.",
+      "Puros y pipas aumentan sobre todo cáncer ororespiratorio porque normalmente no se traga el humo.",
+      "Los derivados de nicotina carecen de poder carcinógeno.",
+      "Mascar tabaco aumenta principalmente cáncer de pulmón por inhalación profunda."
+    ],
+    "correcta": "C",
+    "explicacion": "Los apuntes diferencian puros/pipas y mascar/aspirar; el riesgo depende de duración, número, caladas y porción consumida, sin umbral seguro."
+  },
+  {
+    "id": 20,
+    "tema": "Tema 2 - Alcohol y cáncer",
+    "pregunta": "La sinergia alcohol-tabaco se destaca especialmente para cáncer de:",
+    "opciones": [
+      "Cerebro, sarcoma y linfoma.",
+      "Boca, faringe, laringe y esófago.",
+      "Piel no melanoma y tiroides.",
+      "Riñón, testículo y próstata.",
+      "Ovario, endometrio y vejiga."
+    ],
+    "correcta": "B",
+    "explicacion": "Los apuntes señalan efecto sinérgico para boca, faringe, laringe y esófago."
+  },
+  {
+    "id": 21,
+    "tema": "Tema 2 - Dieta y cáncer",
+    "pregunta": "¿Cuál de estas asociaciones dieta-cáncer sería falsa según los apuntes y el listado de examen?",
+    "opciones": [
+      "Salazones y ahumados - cáncer de estómago y esófago.",
+      "Ahumados - cáncer de mama.",
+      "Fruta, verduras y fibra - efecto protector.",
+      "Alimentos quemados o a la brasa - cáncer de vejiga.",
+      "Carnes procesadas/rojas en exceso - cáncer colorrectal."
+    ],
+    "correcta": "B",
+    "explicacion": "La relación falsa señalada es ahumados-cáncer de mama; los ahumados se asocian a estómago y esófago."
+  },
+  {
+    "id": 22,
+    "tema": "Tema 2 - Radiaciones y cáncer",
+    "pregunta": "En radiaciones ionizantes a dosis bajas, ¿qué postura de salud pública recogen los apuntes?",
+    "opciones": [
+      "Solo aumentan melanoma y nunca leucemia.",
+      "El riesgo disminuye al aumentar la dosis por adaptación celular.",
+      "Riesgo cero demostrado hasta 100 exploraciones médicas.",
+      "No se consideran factor de riesgo si la dosis es diagnóstica.",
+      "Incremento del riesgo lineal y sin umbral, por lo que se evitan exposiciones médicas innecesarias."
+    ],
+    "correcta": "E",
+    "explicacion": "Aunque los efectos a dosis bajas no se conocen con certeza, se aplica el principio de riesgo lineal sin umbral."
+  },
+  {
+    "id": 23,
+    "tema": "Tema 2 - Agentes biológicos y cáncer",
+    "pregunta": "¿Cuál de las parejas agente-tumor está correctamente emparejada según los apuntes?",
+    "opciones": [
+      "Schistosoma haematobium - cáncer de esófago.",
+      "HTLV-1 - sarcoma de Kaposi.",
+      "Aspergillus - cáncer de tiroides.",
+      "Helicobacter pylori - cáncer de vejiga.",
+      "VPH - cáncer de cérvix."
+    ],
+    "correcta": "E",
+    "explicacion": "El VPH se relaciona con cáncer de cérvix; otros emparejamientos de los apuntes son H. pylori-esófago, Schistosoma-vejiga, Aspergillus-hígado y HTLV-1-leucemia T."
+  },
+  {
+    "id": 24,
+    "tema": "Tema 2 - Factores reproductivos y hormonales",
+    "pregunta": "¿Qué situación aumenta el riesgo de cáncer de mama según los apuntes?",
+    "opciones": [
+      "Menarquia tardía y menopausia precoz.",
+      "Edad tardía del primer parto, menarquia temprana y menopausia tardía.",
+      "Menopausia temprana y bajo tiempo de exposición estrogénica.",
+      "Ausencia total de exposición hormonal.",
+      "Multiparidad precoz y lactancia prolongada."
+    ],
+    "correcta": "B",
+    "explicacion": "Los apuntes vinculan riesgo de mama con primer parto tardío, menarquia temprana y menopausia tardía."
+  },
+  {
+    "id": 25,
+    "tema": "Tema 2 - Código Europeo contra el cáncer",
+    "pregunta": "¿Cuál de estas recomendaciones coincide mejor con el Código Europeo contra el cáncer citado?",
+    "opciones": [
+      "No vacunar de hepatitis B ni VPH para evitar falsos positivos.",
+      "No beber alcohol es mejor y debe limitarse su consumo.",
+      "Mantener obesidad si no hay síntomas.",
+      "Evitar cereales integrales y legumbres.",
+      "Usar sol artificial para preparar la piel antes del verano."
+    ],
+    "correcta": "B",
+    "explicacion": "El código recomienda no fumar, limitar alcohol, evitar obesidad, protegerse del sol, dieta saludable, vacunación y cribados."
+  },
+  {
+    "id": 26,
+    "tema": "Tema 2 - Cribados de cáncer",
+    "pregunta": "¿Qué combinación de cribado poblacional coincide con los apuntes?",
+    "opciones": [
+      "Mama desde 25 años, cérvix desde 50 y colon desde 65.",
+      "Mama solo en hombres desde 50 y colon solo en mujeres desde 25.",
+      "Mama desde 50, cérvix desde 25 y colon en hombres y mujeres desde 50.",
+      "Cérvix desde 14 años en toda la población y mama desde 70.",
+      "Colon solo si hay síntomas digestivos."
+    ],
+    "correcta": "C",
+    "explicacion": "Los apuntes resumen mama desde 50, cérvix desde 25 y colon desde 50 en hombres y mujeres."
+  },
+  {
+    "id": 27,
+    "tema": "Tema 3 - Obesidad",
+    "pregunta": "¿Qué limitación principal del IMC explica que no sea suficiente para estimar grasa visceral?",
+    "opciones": [
+      "Siempre infravalora obesidad en todas las personas.",
+      "No se relaciona con talla.",
+      "Solo puede calcularse en niños.",
+      "No utiliza el peso.",
+      "No tiene en cuenta la composición corporal ni la distribución de la grasa."
+    ],
+    "correcta": "E",
+    "explicacion": "El IMC es útil, pero no distingue masa grasa, masa muscular ni distribución."
+  },
+  {
+    "id": 28,
+    "tema": "Tema 3 - Obesidad",
+    "pregunta": "Según los apuntes y el listado de examen, la medida que mejor aproxima la grasa visceral/riesgo abdominal entre las opciones propuestas es:",
+    "opciones": [
+      "Índice cintura/estatura.",
+      "Talla en metros.",
+      "Peso aislado en kilogramos.",
+      "Pliegue bicipital aislado en todos los casos.",
+      "Perímetro cefálico."
+    ],
+    "correcta": "A",
+    "explicacion": "El índice cintura/estatura refleja mejor la adiposidad central; el valor objetivo general es <0,5 y <0,6 en mayores de 50 años."
+  },
+  {
+    "id": 29,
+    "tema": "Tema 3 - Síndrome metabólico",
+    "pregunta": "¿Cuál NO forma parte de los criterios que los apuntes incluyen en el síndrome X o metabólico?",
+    "opciones": [
+      "Resistencia a la insulina/hiperinsulinemia.",
+      "Obesidad abdominal.",
+      "Hiperlipemia.",
+      "Sedentarismo como criterio diagnóstico directo.",
+      "Hipertensión arterial."
+    ],
+    "correcta": "D",
+    "explicacion": "El sedentarismo es factor de riesgo, pero no aparece como criterio del síndrome metabólico en los apuntes."
+  },
+  {
+    "id": 30,
+    "tema": "Tema 3 - Prevención de obesidad",
+    "pregunta": "La Estrategia NAOS se resume mejor como:",
+    "opciones": [
+      "Campaña exclusiva de cirugía bariátrica.",
+      "Dieta hiperproteica obligatoria.",
+      "Nutrición, actividad física y prevención de obesidad y sedentarismo: “Come sano y muévete”.",
+      "Programa de cribado oncológico para adultos obesos.",
+      "Plan de vacunación frente a obesidad infantil."
+    ],
+    "correcta": "C",
+    "explicacion": "NAOS se orienta a nutrición, actividad física y prevención de obesidad/sedentarismo."
+  },
+  {
+    "id": 31,
+    "tema": "Tema 3 - Tratamiento de obesidad",
+    "pregunta": "En tratamiento farmacológico de obesidad, según los apuntes, ¿cuándo se plantea en general?",
+    "opciones": [
+      "Nunca si hay diabetes tipo II.",
+      "Siempre antes de cambios dietéticos.",
+      "Con IMC >18,5 sin factores de riesgo.",
+      "Con IMC >30 o >27 si hay factores de riesgo concomitantes.",
+      "Solo con IMC >50 tras bypass."
+    ],
+    "correcta": "D",
+    "explicacion": "Los apuntes señalan fármacos con IMC superior a 30 o a 27 con factores de riesgo."
+  },
+  {
+    "id": 32,
+    "tema": "Tema 3 - Tratamiento quirúrgico de obesidad",
+    "pregunta": "La cirugía bariátrica/bypass se plantea según los apuntes cuando:",
+    "opciones": [
+      "IMC >40 o >35 con enfermedades asociadas cuando otros métodos fallaron.",
+      "Cuando el paciente rechaza cambios de hábitos aunque no tenga obesidad.",
+      "IMC normal con deseo de adelgazamiento rápido.",
+      "IMC >25 sin comorbilidad y primer intento terapéutico.",
+      "Solo en niños menores de 6 años."
+    ],
+    "correcta": "A",
+    "explicacion": "La indicación recogida es IMC >40 o >35 con enfermedades asociadas tras fracaso de otros métodos."
+  },
+  {
+    "id": 33,
+    "tema": "Tema 3 - Nutrición saludable",
+    "pregunta": "En dieta saludable para prevención de obesidad, ¿qué idea es más coherente con los apuntes?",
+    "opciones": [
+      "Los hidratos de carbono complejos deben eliminarse.",
+      "Importa más el control de la ingesta energética total que centrarse solo en grasas.",
+      "La fibra vegetal debe reducirse.",
+      "Las dietas de 400-800 kcal/día son la recomendación general.",
+      "Las bebidas azucaradas deben ser la base hídrica."
+    ],
+    "correcta": "B",
+    "explicacion": "Se insiste en ingesta energética total, HC complejos >50%, fibra vegetal y limitar alcohol y bebidas azucaradas."
+  },
+  {
+    "id": 34,
+    "tema": "Tema 3 - Patrones alimentarios",
+    "pregunta": "Según las preguntas de examen, ¿qué opción recoge mejor dos ideas clave sobre dieta mediterránea/Harvard/DASH?",
+    "opciones": [
+      "Carnes procesadas como base mediterránea y bebidas azucaradas en el plato de Harvard.",
+      "DASH rica en sal y baja en frutas.",
+      "Plato de Harvard: mitad de ultraprocesados.",
+      "Dieta mediterránea sin legumbres ni aceite de oliva.",
+      "Frutos secos como componente mediterráneo y vegetales como mayor proporción del plato de Harvard."
+    ],
+    "correcta": "E",
+    "explicacion": "El listado de examen remarca frutos secos en patrón mediterráneo, vegetales en el plato de Harvard y DASH rica en frutas/vegetales y baja en sal."
+  },
+  {
+    "id": 35,
+    "tema": "Tema 5 - EPOC y espirometría",
+    "pregunta": "En espirometría, ¿qué patrón orienta a enfermedad obstructiva según los apuntes?",
+    "opciones": [
+      "FVC <80% con FEV1/FVC normal como único dato.",
+      "Saturación basal <92% como criterio diagnóstico único.",
+      "FEV1/FVC <70%.",
+      "FEV1 siempre normal tras broncodilatador.",
+      "FEV1/FVC >95%."
+    ],
+    "correcta": "C",
+    "explicacion": "El criterio obstructivo descrito es índice FEV1/FVC menor del 70%."
+  },
+  {
+    "id": 36,
+    "tema": "Tema 5 - EPOC",
+    "pregunta": "¿Cuál es una medida de prevención secundaria de EPOC según los apuntes?",
+    "opciones": [
+      "Indicar antibióticos crónicos a fumadores sanos.",
+      "Evitar vacunación antigripal.",
+      "Espirometría anual si existen factores de riesgo y detección del descenso de FEV1.",
+      "Políticas libres de humo únicamente antes de existir riesgo.",
+      "Rehabilitación psicosocial como única prevención en población sana."
+    ],
+    "correcta": "C",
+    "explicacion": "La prevención secundaria incluye detección de descenso de FEV1, espirometría anual con factores de riesgo y tratamiento precoz."
+  },
+  {
+    "id": 37,
+    "tema": "Tema 5 - EPOC",
+    "pregunta": "Sobre el déficit de alfa-1-antitripsina (AAT), ¿qué afirmación coincide con los apuntes?",
+    "opciones": [
+      "Se diagnostica solo si hay asma alérgica infantil.",
+      "Nunca se considera en enfisema.",
+      "Se adquiere por infección respiratoria y siempre causa EPOC.",
+      "Protege la matriz pulmonar al activar elastasa de neutrófilos.",
+      "Es hereditario autosómico, puede dar baja función pulmonar incluso sin tabaco, pero solo 1-2% de quienes lo tienen desarrollan EPOC."
+    ],
+    "correcta": "E",
+    "explicacion": "La AAT inhibe elastasa; su déficit hereditario puede predisponer a enfisema/EPOC, pero requiere otros factores en muchos casos."
+  },
+  {
+    "id": 38,
+    "tema": "Tema 5 - Asma",
+    "pregunta": "El criterio de reversibilidad compatible con asma se expresa como:",
+    "opciones": [
+      "Tos durante menos de 24 horas sin variación.",
+      "Descenso de FEV1/FVC por debajo de 70% irreversible.",
+      "FVC <80% sin respuesta broncodilatadora.",
+      "Saturación >98% tras ejercicio.",
+      "Aumento de FEV1 >12% o 200 ml con tratamiento."
+    ],
+    "correcta": "E",
+    "explicacion": "Los apuntes citan reversibilidad con tratamiento del 12% o 200 ml del FEV1."
+  },
+  {
+    "id": 39,
+    "tema": "Tema 5 - Asma",
+    "pregunta": "En prevención secundaria del asma, ¿cuál de estas medidas está mejor alineada con el control de precipitantes?",
+    "opciones": [
+      "Recomendar humo de tabaco perinatal para tolerancia inmunitaria.",
+      "Aumentar humedad ambiental por encima del 80%.",
+      "Evitar mascotas o al menos su entrada en la habitación, forros antiácaros y lavado frecuente a >55ºC.",
+      "Retirar todo tratamiento farmacológico si hay sibilancias.",
+      "Vacunar con BCG a todos los asmáticos."
+    ],
+    "correcta": "C",
+    "explicacion": "El control de ácaros, mascotas, pólenes, hongos e irritantes forma parte del manejo preventivo."
+  },
+  {
+    "id": 40,
+    "tema": "Tema 6 - Violencia",
+    "pregunta": "La violencia estructural se diferencia de la directa porque:",
+    "opciones": [
+      "Es equivalente a una agresión física entre dos personas.",
+      "No tiene emisor individual claro; opera por una estructura social donde sistemáticamente pierden los mismos.",
+      "Siempre deja una lesión visible inmediata.",
+      "Es siempre más fácil de identificar que la directa.",
+      "Solo se produce en conflictos armados."
+    ],
+    "correcta": "B",
+    "explicacion": "La estructural se atribuye a la estratificación social y a estructuras, no a un agresor concreto visible."
+  },
+  {
+    "id": 41,
+    "tema": "Tema 6 - Violencia",
+    "pregunta": "En el modelo ecológico de violencia, ¿qué ejemplo pertenece al nivel comunitario?",
+    "opciones": [
+      "Padre ausente en la familia de origen.",
+      "Genética individual.",
+      "Pobreza, desempleo, aislamiento social y pertenencia a grupos violentos.",
+      "Normas sociales que legitiman control masculino.",
+      "Conflicto de pareja."
+    ],
+    "correcta": "C",
+    "explicacion": "Los factores comunitarios incluyen pobreza, bajo estatus socioeconómico, desempleo, aislamiento y grupos violentos."
+  },
+  {
+    "id": 42,
+    "tema": "Tema 6 - Violencia",
+    "pregunta": "¿Qué experimento se asocia mejor con conformismo ante la jerarquía y “me mandan hacerlo”?",
+    "opciones": [
+      "Milgram.",
+      "Cueva de los ladrones.",
+      "Cárcel de Stanford.",
+      "Hawthorne.",
+      "Asch."
+    ],
+    "correcta": "A",
+    "explicacion": "Milgram se relaciona en los apuntes con conformismo ante la jerarquía y cosificación de la responsabilidad."
+  },
+  {
+    "id": 43,
+    "tema": "Tema 6 - Violencia social",
+    "pregunta": "Según los apuntes, el predictor más importante de homicidio citado es:",
+    "opciones": [
+      "La vacunación incompleta.",
+      "El nivel de colesterol poblacional.",
+      "La altitud geográfica.",
+      "La exposición solar intermitente.",
+      "La desigualdad social por pérdida de cohesión."
+    ],
+    "correcta": "E",
+    "explicacion": "El tema señala la desigualdad social por pérdida de cohesión como predictor importante."
+  },
+  {
+    "id": 44,
+    "tema": "Tema 8 - Tabaquismo",
+    "pregunta": "¿Qué opción clasifica correctamente productos de tabaco/nicotina según los apuntes?",
+    "opciones": [
+      "Las bolsitas de nicotina contienen siempre tabaco.",
+      "Con combustión: cigarrillo, puro o pipa; sin combustión: snus, rapé, de mascar o IQOS.",
+      "Todos los dispositivos electrónicos son seguros y recomendables para dejar de fumar.",
+      "La cachimba no aporta nicotina ni CO.",
+      "Con combustión: snus y rapé; sin combustión: cigarrillo."
+    ],
+    "correcta": "B",
+    "explicacion": "Los apuntes separan productos con combustión y sin combustión, y no recomiendan dispositivos electrónicos como método seguro de cesación."
+  },
+  {
+    "id": 45,
+    "tema": "Tema 8 - Tabaquismo",
+    "pregunta": "La explicación de por qué un solo cigarrillo puede favorecer recaída se relaciona en los apuntes con:",
+    "opciones": [
+      "Desaparición completa de receptores nicotínicos al dejar de fumar.",
+      "Que la nicotina no genera tolerancia.",
+      "Reactivación de receptores nicotínicos inactivos que vuelven a requerir nicotina.",
+      "Que fumar no es una conducta aprendida.",
+      "Ausencia de dependencia física por nicotina."
+    ],
+    "correcta": "C",
+    "explicacion": "El mantenimiento del consumo se explica por receptores nicotínicos y condicionantes; al reexponerse, se reactivan necesidades."
+  },
+  {
+    "id": 46,
+    "tema": "Tema 8 - Tabaquismo",
+    "pregunta": "¿Qué afirmación sobre humo de segunda, tercera y cuarta mano es correcta?",
+    "opciones": [
+      "La cuarta mano se refiere a transmisión por agua.",
+      "Segunda mano: exposición pasiva; tercera: residuos en muebles/ropa; cuarta: contaminación por colillas y desechables.",
+      "La tercera mano no contiene contaminantes.",
+      "Todas son equivalentes y solo afectan al fumador activo.",
+      "Segunda mano: colillas; tercera: humo inhalado por fumador; cuarta: vapor medicinal."
+    ],
+    "correcta": "B",
+    "explicacion": "Los apuntes diferencian fumador pasivo, residuos ambientales en superficies y contaminación por colillas/dispositivos."
+  },
+  {
+    "id": 47,
+    "tema": "Tema 8 - Tabaquismo",
+    "pregunta": "Una sesión de pipa de agua/cachimba se describe en los apuntes como exposición aproximada, respecto a un cigarrillo convencional, a:",
+    "opciones": [
+      "200 veces humo, 25 veces alquitrán, 2,5 veces nicotina y 10 veces CO.",
+      "Igual cantidad de humo pero sin alquitrán.",
+      "Solo más vapor de agua, sin tóxicos.",
+      "Menos nicotina y más oxígeno.",
+      "Menos humo y menos CO."
+    ],
+    "correcta": "A",
+    "explicacion": "Los apuntes dan esas magnitudes comparativas para desmontar la falsa seguridad de la cachimba."
+  },
+  {
+    "id": 48,
+    "tema": "Tema 8 - Control del tabaquismo",
+    "pregunta": "En MPOWER, la W corresponde a:",
+    "opciones": [
+      "Withdraw nicotine from all adults.",
+      "Weight: control del peso del fumador.",
+      "Wash: lavado de manos antes de fumar.",
+      "Warn: advertir de los peligros del tabaco.",
+      "Wait: esperar a que el paciente pida ayuda."
+    ],
+    "correcta": "D",
+    "explicacion": "MPOWER incluye Monitor, Protect, Offer, Warn, Enforce y Raise."
+  },
+  {
+    "id": 49,
+    "tema": "Tema 8 - Intervención 5A",
+    "pregunta": "El orden correcto de las 5A en intervención sobre tabaquismo es:",
+    "opciones": [
+      "Ayudar, Apreciar, Aconsejar, Averiguar y Abandonar.",
+      "Averiguar, Aconsejar, Apreciar, Ayudar y Acordar/fijar seguimiento.",
+      "Averiguar, Amenazar, Ayudar, Aislar y Alta.",
+      "Aconsejar, Averiguar, Ayudar, Apreciar y Aislar.",
+      "Apreciar, Acordar, Aislar, Ayudar y Aconsejar."
+    ],
+    "correcta": "B",
+    "explicacion": "Ask, Advise, Assess, Assist, Arrange: averiguar, aconsejar, apreciar fase, ayudar y fijar seguimiento."
+  },
+  {
+    "id": 50,
+    "tema": "Tema 8 - Cesación tabáquica",
+    "pregunta": "¿Qué emparejamiento de test/medida es correcto?",
+    "opciones": [
+      "Richmond - función pulmonar; Mantoux - motivación.",
+      "CAGE - CO espirado; Fagerström - alcoholismo.",
+      "Fagerström - dependencia física; Richmond - motivación; cooximetría - CO espirado.",
+      "Fagerström - cribado de cannabis; CAST - nicotina.",
+      "Fagerström - motivación; Richmond - dependencia física; cooximetría - glucemia."
+    ],
+    "correcta": "C",
+    "explicacion": "Fagerström valora dependencia física, Richmond motivación y la cooximetría el CO en aire espirado."
+  },
+  {
+    "id": 51,
+    "tema": "Tema 9 - Alcohol",
+    "pregunta": "La fórmula teórica para estimar gramos de alcohol de una bebida en los apuntes es:",
+    "opciones": [
+      "Volumen / graduación x 100.",
+      "Graduación x edad / peso.",
+      "Peso x talla² / 100.",
+      "Volumen x graduación x 0,8 / 100.",
+      "UBE x 0,8 / graduación."
+    ],
+    "correcta": "D",
+    "explicacion": "Los gramos se calculan como volumen por graduación por 0,8 dividido entre 100."
+  },
+  {
+    "id": 52,
+    "tema": "Tema 9 - Alcohol",
+    "pregunta": "¿Qué opción define mejor una UBE según los apuntes?",
+    "opciones": [
+      "Una medida exclusiva de licores destilados.",
+      "La cantidad que produce siempre coma etílico.",
+      "10 gramos de alcohol; aproximadamente una cerveza, vaso de vino o copa de cava.",
+      "1 gramo de alcohol puro.",
+      "25 gramos de alcohol en toda bebida."
+    ],
+    "correcta": "C",
+    "explicacion": "Una UBE equivale a 10 g de alcohol y se aproxima a una cerveza, un vaso de vino o una copa de cava."
+  },
+  {
+    "id": 53,
+    "tema": "Tema 9 - Alcohol",
+    "pregunta": "¿Cuál de las siguientes situaciones convierte el consumo en “de riesgo” aunque la cantidad sea baja?",
+    "opciones": [
+      "Mujer embarazada, menor o persona con actividad/tratamiento que desaconseja alcohol.",
+      "Persona que bebe solo bebidas fermentadas.",
+      "Adulto que toma alcohol exclusivamente con alimentos.",
+      "Adulto sano sin medicación que bebe una UBE en una comida.",
+      "Hombre adulto que nunca conduce."
+    ],
+    "correcta": "A",
+    "explicacion": "El consumo de riesgo incluye embarazo, menores y actividades, enfermedades o tratamientos incompatibles con alcohol."
+  },
+  {
+    "id": 54,
+    "tema": "Tema 9 - Alcohol",
+    "pregunta": "Una historia de embriaguez atípica con psicosis con poco alcohol y amnesia posterior clasifica al sujeto como:",
+    "opciones": [
+      "Caso de intoxicación alimentaria, no alcohol.",
+      "Consumidor de bajo riesgo si no supera 2 UBE/día.",
+      "Bebedor problemático según criterios clínicos.",
+      "Bebedor moderado sin riesgo.",
+      "Abstemio con intolerancia alimentaria."
+    ],
+    "correcta": "C",
+    "explicacion": "La embriaguez atípica aparece en los criterios clínicos de bebedor problemático."
+  },
+  {
+    "id": 55,
+    "tema": "Tema 9 - Alcohol",
+    "pregunta": "El binge drinking se define en los apuntes como:",
+    "opciones": [
+      "Cualquier consumo en menores de 25 años.",
+      "Consumo exclusivo de vino con comida.",
+      "Abstinencia brusca con temblor.",
+      "Una UBE diaria durante un mes.",
+      "Beber 5 o más vasos de bebida alcohólica en unas dos horas."
+    ],
+    "correcta": "E",
+    "explicacion": "El binge drinking se refiere a ingesta concentrada de 5 o más vasos en aproximadamente dos horas."
+  },
+  {
+    "id": 56,
+    "tema": "Tema 9 - Alcohol",
+    "pregunta": "El cuestionario CAGE se menciona como útil para:",
+    "opciones": [
+      "Medición de CO espirado.",
+      "Diagnóstico de tuberculosis latente.",
+      "Escala de fragilidad física.",
+      "Valoración del riesgo de cannabis.",
+      "Cribado de problemas con el alcohol."
+    ],
+    "correcta": "E",
+    "explicacion": "En el listado de examen se recuerda CAGE como cribado de problemas relacionados con el alcohol."
+  },
+  {
+    "id": 57,
+    "tema": "Tema 10 - Otras drogas",
+    "pregunta": "¿Cuál es la clasificación correcta de ejemplos según el tema de drogas?",
+    "opciones": [
+      "Depresoras: tranquilizantes/hipnóticos/narcóticos; estimulantes: anfetaminas/cocaína/éxtasis; alucinógenas: cannabis/LSD/hongos.",
+      "Depresoras: éxtasis; estimulantes: benzodiacepinas; alucinógenas: antibióticos.",
+      "Cannabis nunca se clasifica como psicodisléptico.",
+      "Todas las drogas son únicamente estimulantes.",
+      "Depresoras: cocaína; estimulantes: anestésicos; alucinógenas: alcohol."
+    ],
+    "correcta": "A",
+    "explicacion": "Los apuntes agrupan depresoras, estimulantes y alucinógenas/psicodislépticas con esos ejemplos."
+  },
+  {
+    "id": 58,
+    "tema": "Tema 10 - Otras drogas",
+    "pregunta": "Según el listado de examen y los apuntes, la tercera droga más consumida tras alcohol y tabaco es:",
+    "opciones": [
+      "Cannabis.",
+      "Cocaína.",
+      "Hipnosedantes.",
+      "Heroína.",
+      "Éxtasis."
+    ],
+    "correcta": "C",
+    "explicacion": "Los hipnosedantes aparecen como tercera droga más consumida, y con inicio más tardío."
+  },
+  {
+    "id": 59,
+    "tema": "Tema 10 - Cannabis",
+    "pregunta": "El CAST se usa para:",
+    "opciones": [
+      "Calcular gramos de alcohol.",
+      "Valorar fuerza de prensión en fragilidad.",
+      "Medir dependencia física a nicotina.",
+      "Estimar consumo de riesgo de cannabis mediante 6 preguntas con 5 opciones.",
+      "Diagnosticar VIH."
+    ],
+    "correcta": "D",
+    "explicacion": "El Cannabis Abuse Screening Test identifica consumo de riesgo de cannabis; consta de 6 preguntas con 5 opciones."
+  },
+  {
+    "id": 60,
+    "tema": "Tema 11 - Actividad física",
+    "pregunta": "¿Qué diferencia conceptual es correcta?",
+    "opciones": [
+      "Actividad física es solo deporte competitivo.",
+      "Todo movimiento corporal se clasifica como ejercicio físico intenso.",
+      "Sedentarismo equivale a no practicar deporte federado.",
+      "Actividad física y ejercicio son sinónimos exactos.",
+      "Ejercicio físico es actividad física planificada, estructurada y repetida; deporte implica reglas y competición."
+    ],
+    "correcta": "E",
+    "explicacion": "La actividad física es cualquier movimiento que eleva gasto; el ejercicio es planificado y el deporte incorpora reglas/competición."
+  },
+  {
+    "id": 61,
+    "tema": "Tema 11 - MET y sedentarismo",
+    "pregunta": "¿Qué es un MET y cómo se relaciona con sedentarismo en los apuntes?",
+    "opciones": [
+      "Test de dependencia tabáquica; sedentarismo si puntúa >7.",
+      "Índice cintura/estatura; sedentarismo si es >0,5.",
+      "Equivalente metabólico del gasto en reposo; sedentarismo si el gasto en actividades >4 METs es menor del 10%.",
+      "Una vacuna metabólica; sedentarismo si hay más de 4 dosis.",
+      "Escala de alcohol; sedentarismo si supera 5 UBE."
+    ],
+    "correcta": "C",
+    "explicacion": "MET es equivalente metabólico; se usa para clasificar intensidad y los apuntes definen sedentarismo por bajo gasto en actividades >4 METs."
+  },
+  {
+    "id": 62,
+    "tema": "Tema 11 - Beneficios del ejercicio",
+    "pregunta": "En relación con enfermedad cardiovascular, los apuntes señalan que:",
+    "opciones": [
+      "El ejercicio empeora el perfil lipídico.",
+      "Importa más la cantidad que la intensidad para el sistema cardiovascular.",
+      "No tiene efecto sobre HTA.",
+      "Solo beneficia a menores de 18 años.",
+      "La intensidad siempre importa más que la cantidad."
+    ],
+    "correcta": "B",
+    "explicacion": "En prevención cardiovascular, los apuntes destacan beneficios del ejercicio y que para el sistema cardiovascular es mejor la cantidad que la intensidad."
+  },
+  {
+    "id": 63,
+    "tema": "Tema 11 - Intervenciones comunitarias",
+    "pregunta": "Según las conclusiones citadas, las mejores intervenciones de actividad física suelen:",
+    "opciones": [
+      "Ser comunitarias, considerar influencia social y barreras de ambiente/tiempo.",
+      "Evitar recordatorios por móvil.",
+      "Centrarse solo en deportistas federados.",
+      "Depender exclusivamente de apps online, siempre más eficaces.",
+      "Ser solo individuales y sin tener en cuenta barreras ambientales."
+    ],
+    "correcta": "A",
+    "explicacion": "El tema menciona que las mejores intervenciones son comunitarias y atienden influencia social y barreras."
+  },
+  {
+    "id": 64,
+    "tema": "Tema 13 - Salud escolar y adolescente",
+    "pregunta": "Los ejes fundamentales de prevención en edad escolar y adolescente son:",
+    "opciones": [
+      "Educación para la salud, vigilancia y control del crecimiento/desarrollo, inmunizaciones y prevención de accidentes.",
+      "Solo tratamiento farmacológico y hospitalización.",
+      "Prevención terciaria de EPOC avanzada.",
+      "Cribado de cáncer de colon y mama.",
+      "Únicamente vacunación antigripal."
+    ],
+    "correcta": "A",
+    "explicacion": "Los apuntes destacan educación, vigilancia/control, inmunizaciones y prevención de accidentes."
+  },
+  {
+    "id": 65,
+    "tema": "Tema 13 - Adolescencia",
+    "pregunta": "¿Qué conjunto de problemas por edad coincide con los apuntes?",
+    "opciones": [
+      "Solo aparecen problemas infecciosos importados.",
+      "0-14 años: infarto; 2-17: artrosis; 14-18: fragilidad.",
+      "0-14 años: Alzheimer; 2-17: EPOC; 14-18: cáncer de próstata.",
+      "La adolescencia carece de mortalidad por accidentes.",
+      "0-14 años: alergia crónica, asma, trastorno de conducta y autismo; 2-17: obesidad/sedentarismo; 14-18: consumo de drogas."
+    ],
+    "correcta": "E",
+    "explicacion": "Es el esquema de problemas principales por edad recogido en el tema."
+  },
+  {
+    "id": 66,
+    "tema": "Tema 13 - Pediculosis",
+    "pregunta": "En pediculosis, ¿qué afirmación es correcta?",
+    "opciones": [
+      "La mala higiene causa el contagio inicial en todos los casos.",
+      "Agua y jabón eliminan siempre las liendres por completo.",
+      "El peinado y longitud del pelo no influyen.",
+      "No se recomiendan pediculicidas preventivos; la mala higiene puede influir en la gravedad, no en el contagio inicial.",
+      "Debe tratarse preventivamente a toda la clase con lociones."
+    ],
+    "correcta": "D",
+    "explicacion": "Los apuntes recomiendan inspección y peinado, no pediculicidas preventivos; higiene puede influir en gravedad, no en contagio inicial."
+  },
+  {
+    "id": 67,
+    "tema": "Tema 13 - Salud bucodental",
+    "pregunta": "La caries se explica en los apuntes por la interacción de:",
+    "opciones": [
+      "Alcohol, tabaco y radiación solar.",
+      "Diente/huésped, bacterias y sustrato de carbohidratos.",
+      "Solo falta de calcio.",
+      "Virus respiratorio, vector y agua contaminada.",
+      "Exclusivamente herencia familiar."
+    ],
+    "correcta": "B",
+    "explicacion": "Los factores etiológicos son características del huésped/diente, microflora bacteriana y sustrato de carbohidratos."
+  },
+  {
+    "id": 68,
+    "tema": "Tema 15 - Inmigración y salud",
+    "pregunta": "¿Qué diferencia mejor refugiado de migrante económico en los apuntes?",
+    "opciones": [
+      "Ambos términos son equivalentes legalmente.",
+      "El refugiado no puede recibir atención sanitaria.",
+      "El refugiado sale porque su vida/libertad peligra y tiene derecho internacional a asilo; el migrante económico busca mejorar oportunidades.",
+      "El migrante económico siempre huye de persecución política.",
+      "El refugiado viaja por turismo sanitario."
+    ],
+    "correcta": "C",
+    "explicacion": "El refugiado huye de guerra/persecución con reconocimiento internacional; el migrante económico se mueve por oportunidades o condiciones de vida."
+  },
+  {
+    "id": 69,
+    "tema": "Tema 15 - Inmigración y salud",
+    "pregunta": "Sobre enfermedades infecciosas en migrantes, ¿qué enfoque es más ajustado?",
+    "opciones": [
+      "Solo importan enfermedades tropicales raras.",
+      "No existen diferencias culturales que afecten atención sanitaria.",
+      "Toda persona migrante debe considerarse infecciosa.",
+      "Actualmente se habla de enfermedades importadas, pero son una pequeña fracción; muchas necesidades se relacionan con adaptación, salud mental y acceso.",
+      "Las enfermedades importadas son la mayoría de las demandas sanitarias."
+    ],
+    "correcta": "D",
+    "explicacion": "Los apuntes matizan que las enfermedades importadas son una pequeña parte y que hay barreras sociales, culturales, preventivas y de acceso."
+  },
+  {
+    "id": 70,
+    "tema": "Tema 15 - Visita de acogida",
+    "pregunta": "En la visita de acogida del adulto migrante en AP, ¿qué dato pertenece a la anamnesis inicial propuesta?",
+    "opciones": [
+      "Prueba de esfuerzo a todos.",
+      "País de origen, tiempo en España, viajes a origen, situación vacunal y antecedentes.",
+      "Únicamente IMC y colesterol.",
+      "Solo filiación administrativa sin exploración.",
+      "Cribado de cáncer de colon a cualquier edad."
+    ],
+    "correcta": "B",
+    "explicacion": "La anamnesis incluye origen, residencia, viajes, vacunas, antecedentes y otros datos clínico-sociales."
+  },
+  {
+    "id": 71,
+    "tema": "Tema 15 - Accesibilidad",
+    "pregunta": "¿Cuál es una barrera para el inmigrante citada en el tema?",
+    "opciones": [
+      "Exceso de familiaridad con el sistema de salud.",
+      "Acceso preventivo siempre mayor que la población autóctona.",
+      "Desconocimiento de derechos, barreras legales/administrativas y lingüístico-culturales.",
+      "Uso obligatorio de programas preventivos adaptados.",
+      "Ausencia de barreras de comunicación."
+    ],
+    "correcta": "C",
+    "explicacion": "El tema incluye barreras de familiaridad, derechos, legales/administrativas, comunicación y percepciones sociales."
+  },
+  {
+    "id": 72,
+    "tema": "Tema 16 - Salud internacional",
+    "pregunta": "La salud global se define mejor como:",
+    "opciones": [
+      "Atención clínica privada sin cooperación internacional.",
+      "Control de enfermedades solo dentro de un municipio.",
+      "Sustitución de la salud pública por turismo sanitario.",
+      "Estudio e intervención sobre problemas de salud que trascienden fronteras y requieren cooperación internacional.",
+      "Vacunación exclusiva de viajeros ricos."
+    ],
+    "correcta": "D",
+    "explicacion": "La salud global aborda problemas transfronterizos con cooperación internacional."
+  },
+  {
+    "id": 73,
+    "tema": "Tema 16 - Reglamento Sanitario Internacional",
+    "pregunta": "El objetivo principal del RSI, según los apuntes, es:",
+    "opciones": [
+      "Sustituir a los calendarios vacunales nacionales.",
+      "Controlar exclusivamente enfermedades animales.",
+      "Cerrar fronteras ante cualquier brote sin valorar proporcionalidad.",
+      "Prevenir, detectar y responder a amenazas de salud pública sin interferir innecesariamente con comercio y viajes internacionales.",
+      "Regular precios de medicamentos."
+    ],
+    "correcta": "D",
+    "explicacion": "El RSI busca respuesta proporcionada a riesgos, evitando interferencias innecesarias en tráfico y comercio."
+  },
+  {
+    "id": 74,
+    "tema": "Tema 16 - Viajero crónico",
+    "pregunta": "¿Qué recomendación es más adecuada para un viajero con enfermedad crónica según los apuntes?",
+    "opciones": [
+      "Suspender toda medicación durante el viaje.",
+      "Comprar toda la medicación al llegar sin receta.",
+      "Llevar la medicación solo en equipaje facturado y sin informe.",
+      "Llevar medicación suficiente en equipaje de mano en envases originales, duplicado en facturado e informe médico.",
+      "No informar al médico tras el viaje aunque haya síntomas."
+    ],
+    "correcta": "D",
+    "explicacion": "Se recomienda llevar medicación suficiente, en envases originales, duplicada e informe médico disponible."
+  },
+  {
+    "id": 75,
+    "tema": "Tema 16 - Factores del viaje",
+    "pregunta": "A partir de 2400 m, para reducir riesgo de mal de altura, los apuntes recomiendan:",
+    "opciones": [
+      "Hacer comidas muy saladas y copiosas.",
+      "Beber 2-3 L/día, comer ligero y pobre en sal y evitar alcohol 48 h antes del ascenso.",
+      "No hidratarse para evitar edemas.",
+      "Ascender rápidamente para aclimatar antes.",
+      "Beber alcohol para vasodilatar."
+    ],
+    "correcta": "B",
+    "explicacion": "Esa es la recomendación de altitud recogida."
+  },
+  {
+    "id": 76,
+    "tema": "Tema 16 - Diarrea del viajero",
+    "pregunta": "La diarrea del viajero típica en los apuntes se caracteriza por:",
+    "opciones": [
+      "Hemorragia digestiva persistente durante meses.",
+      "Diarrea profusa acuosa sin sangre ni moco, brusca y autolimitada en unos 5 días.",
+      "Presentación únicamente tras viajes a países nórdicos.",
+      "Siempre causada por el mismo parásito identificable.",
+      "Ausencia de relación con saneamiento."
+    ],
+    "correcta": "B",
+    "explicacion": "Se describe como diarrea acuosa, sin sangre/moco ni dolor, brusca y que cede espontáneamente en alrededor de 5 días."
+  },
+  {
+    "id": 77,
+    "tema": "Tema 16 - Vacunas del viajero",
+    "pregunta": "¿Qué vacuna se señala como obligatoria para peregrinos a la Meca?",
+    "opciones": [
+      "Hepatitis A universal adulta.",
+      "Meningocócica ACWY/B según contexto del tema.",
+      "Varicela cada año.",
+      "Fiebre tifoidea oral.",
+      "BCG para toda persona adulta."
+    ],
+    "correcta": "B",
+    "explicacion": "El tema de enfermedad meningocócica menciona vacunación ACWY y B, obligatoria para peregrinos a la Meca."
+  },
+  {
+    "id": 78,
+    "tema": "Tema 17 - Transmisibles",
+    "pregunta": "¿Qué tríada de estrategias generales de prevención de transmisibles recoge mejor los apuntes?",
+    "opciones": [
+      "Inactivar/reducir agente, romper cadena de transmisión y reducir susceptibilidad del hospedador.",
+      "Aumentar agente, mantener transmisión y aumentar susceptibilidad.",
+      "Tratar únicamente reservorios animales.",
+      "Solo tratamiento terciario de secuelas.",
+      "Evitar toda vacunación y confiar en inmunidad natural."
+    ],
+    "correcta": "A",
+    "explicacion": "Las estrategias son actuar sobre agente, transmisión y hospedador susceptible."
+  },
+  {
+    "id": 79,
+    "tema": "Tema 17 - Gripe",
+    "pregunta": "¿Por qué la vacuna de gripe debe actualizarse/anualmente según los apuntes?",
+    "opciones": [
+      "Porque el virus cambia su revestimiento antigénico y la protección es pasajera.",
+      "Porque no existen reservorios animales.",
+      "Porque la vacuna dura toda la vida pero se repite por error.",
+      "Porque la composición la decide cada hospital sin vigilancia mundial.",
+      "Porque la gripe está erradicada y solo se vacuna por tradición."
+    ],
+    "correcta": "A",
+    "explicacion": "La gripe cambia antigénicamente y la OMS recomienda la composición anual en función de cepas circulantes."
+  },
+  {
+    "id": 80,
+    "tema": "Tema 17 - COVID-19",
+    "pregunta": "¿Cuál de estos criterios de COVID orienta a gravedad según los apuntes?",
+    "opciones": [
+      "FR 14 rpm y SatO2 98%.",
+      "FC 70 lpm sin disnea.",
+      "FR >30 rpm o SatO2 <92%.",
+      "Dolor de garganta aislado sin fiebre.",
+      "Ausencia de síntomas respiratorios."
+    ],
+    "correcta": "C",
+    "explicacion": "Los criterios citados incluyen FR >30, SatO2 <92, FC >125, hipotensión, disnea en reposo, confusión, dolor pleurítico o vómitos/diarrea incoercibles."
+  },
+  {
+    "id": 81,
+    "tema": "Tema 17 - Meningitis",
+    "pregunta": "Ante sospecha de meningitis meningocócica, una actuación correcta es:",
+    "opciones": [
+      "Quimioprofilaxis a toda la ciudad sin estudiar contactos.",
+      "Evitar cultivo de LCR o sangre.",
+      "Esperar confirmación durante una semana sin aislamiento.",
+      "Aislamiento respiratorio, tratamiento y vigilancia/estudio de contactos, incluyendo quimioprofilaxis a contactos estrechos.",
+      "No comunicar ni vigilar casos."
+    ],
+    "correcta": "D",
+    "explicacion": "El tema indica aislamiento, tratamiento, vigilancia de nuevos casos y profilaxis dirigida a contactos estrechos."
+  },
+  {
+    "id": 82,
+    "tema": "Tema 17 - Tuberculosis",
+    "pregunta": "La infección tuberculosa latente se caracteriza mejor por:",
+    "opciones": [
+      "Síntomas intensos y alta contagiosidad constante.",
+      "Ausencia de síntomas y no transmisión, aunque puede evolucionar a enfermedad.",
+      "Necesidad de aislamiento hospitalario permanente.",
+      "Contraindicación absoluta de cualquier prueba diagnóstica.",
+      "Curación espontánea obligatoria en todos los casos."
+    ],
+    "correcta": "B",
+    "explicacion": "En la infección latente el paciente no presenta síntomas ni contagia, aunque existe riesgo de reactivación."
+  },
+  {
+    "id": 83,
+    "tema": "Tema 17 - BCG",
+    "pregunta": "La vacuna BCG está contraindicada o no indicada en:",
+    "opciones": [
+      "Personas con infección tuberculosa previa o enfermedad tuberculosa previa.",
+      "Trabajadores sanitarios con contacto frecuente con TB.",
+      "Niños no infectados con contacto estrecho inevitable con enfermo contagioso mal tratado.",
+      "Niños sin contacto que viven en zonas de bajo riesgo, como indicación universal actual en España.",
+      "Grupos con alta tasa de infección y mal acceso sanitario."
+    ],
+    "correcta": "A",
+    "explicacion": "Los apuntes citan infección/enfermedad TB previa entre contraindicaciones; en España se abandonó la vacunación neonatal universal."
+  },
+  {
+    "id": 84,
+    "tema": "Tema 18 - Exantemáticas",
+    "pregunta": "¿Qué asociación signo-enfermedad es correcta?",
+    "opciones": [
+      "Chancro duro - escarlatina.",
+      "Vesículas en distintos estadios - rubéola.",
+      "Koplik - sarampión.",
+      "Orquitis - eritema infeccioso.",
+      "Lengua aframbuesada - varicela."
+    ],
+    "correcta": "C",
+    "explicacion": "Las manchas de Koplik son características del sarampión; las vesículas orientan a varicela y lengua aframbuesada a escarlatina."
+  },
+  {
+    "id": 85,
+    "tema": "Tema 18 - Sarampión",
+    "pregunta": "El sarampión se considera especialmente contagioso porque:",
+    "opciones": [
+      "Solo se transmite por agua contaminada.",
+      "Carece de vacuna eficaz.",
+      "Se desarrolla en más del 90% de contactos susceptibles.",
+      "No requiere aislamiento respiratorio.",
+      "Nunca causa complicaciones graves."
+    ],
+    "correcta": "C",
+    "explicacion": "Los apuntes indican desarrollo en >90% de contactos susceptibles y alta transmisibilidad."
+  },
+  {
+    "id": 86,
+    "tema": "Tema 18 - Rubéola",
+    "pregunta": "¿Qué afirmación sobre rubéola congénita es correcta según los apuntes?",
+    "opciones": [
+      "La vacuna se administra como BCG anual.",
+      "Si se transmite antes de 12 semanas, el riesgo de malformaciones fetales es muy alto.",
+      "Solo afecta a varones adultos.",
+      "Siempre produce orquitis.",
+      "No tiene relación con embarazo."
+    ],
+    "correcta": "B",
+    "explicacion": "La transmisión antes de la semana 12 se asocia a riesgo muy elevado de malformaciones."
+  },
+  {
+    "id": 87,
+    "tema": "Tema 18 - Parotiditis",
+    "pregunta": "Una complicación temida de parotiditis en varones jóvenes no vacunados es:",
+    "opciones": [
+      "Cáncer colorrectal inmediato.",
+      "Tétanos cefálico.",
+      "Orquitis con posible afectación testicular/infertilidad.",
+      "Hepatitis C crónica.",
+      "Caries por Estreptococo mutans."
+    ],
+    "correcta": "C",
+    "explicacion": "El listado de examen remarca orquitis e infertilidad como complicación relevante."
+  },
+  {
+    "id": 88,
+    "tema": "Tema 18 - Varicela",
+    "pregunta": "La varicela es la manifestación clínica de la infección primaria por:",
+    "opciones": [
+      "Vibrio cholerae; su reactivación causa cólera.",
+      "Treponema pallidum; su reactivación causa sífilis.",
+      "Virus varicela-zóster; su reactivación causa herpes zóster.",
+      "Clostridium tetani; su reactivación causa tétanos.",
+      "Virus de Epstein-Barr; su reactivación causa rubéola."
+    ],
+    "correcta": "C",
+    "explicacion": "La varicela es infección primaria por virus varicela-zóster; la reactivación latente da herpes zóster."
+  },
+  {
+    "id": 89,
+    "tema": "Tema 19 - Transmisión digestiva",
+    "pregunta": "Las principales enfermedades feco-orales del tema se agrupan correctamente como:",
+    "opciones": [
+      "Bacterianas: sarampión; virales: tétanos; protozoarias: hepatitis B; helmínticas: COVID.",
+      "La fiebre tifoidea es respiratoria y no feco-oral.",
+      "Solo existen infecciones virales digestivas.",
+      "La poliomielitis se transmite principalmente por aerosoles de quirófano.",
+      "Bacterianas: fiebre tifoidea/paratifoidea y Shigella; virales: hepatitis A y poliomielitis; protozoarias: amebiasis; helmínticas: ascaridiasis/trichuriasis."
+    ],
+    "correcta": "E",
+    "explicacion": "El esquema del tema clasifica bacterianas, virales, protozoarias y helmínticas por vía fecal-oral."
+  },
+  {
+    "id": 90,
+    "tema": "Tema 19 - Fiebre tifoidea",
+    "pregunta": "Un portador crónico de Salmonella typhi se define en los apuntes como quien:",
+    "opciones": [
+      "Tiene reservorio exclusivamente animal.",
+      "Elimina Salmonella por heces u orina más de 1 año, a menudo alojada en vesícula biliar.",
+      "Transmite solo por gotas respiratorias.",
+      "Tiene fiebre durante menos de 24 horas.",
+      "Elimina Salmonella menos de 7 días siempre."
+    ],
+    "correcta": "B",
+    "explicacion": "Los portadores crónicos eliminan Salmonella por heces/orina más de un año; se menciona la vesícula biliar."
+  },
+  {
+    "id": 91,
+    "tema": "Tema 19 - Poliomielitis",
+    "pregunta": "La transmisión principal de poliomielitis señalada en el listado de examen es:",
+    "opciones": [
+      "Picadura de mosquito Aedes.",
+      "Aerosoles de quirófano.",
+      "Agua contaminada con heces humanas infectadas.",
+      "Mordedura de perro rabioso.",
+      "Contacto sexual exclusivamente."
+    ],
+    "correcta": "C",
+    "explicacion": "La vía fecal-oral por agua contaminada con heces humanas infectadas se recuerda como clave."
+  },
+  {
+    "id": 92,
+    "tema": "Tema 19 - Hepatitis A",
+    "pregunta": "Sobre vacunación frente a hepatitis A en España, según el listado de examen y el tema, es correcto:",
+    "opciones": [
+      "Solo existe profilaxis con BCG.",
+      "Está contraindicada en viajeros.",
+      "Se transmite principalmente por leche materna.",
+      "No se recomienda a toda la población adulta; se dirige a situaciones y grupos de riesgo.",
+      "Se recomienda universalmente a toda la población adulta sin excepción."
+    ],
+    "correcta": "D",
+    "explicacion": "El listado recalca que en España no se recomienda para toda la población adulta, sino en grupos/situaciones concretas."
+  },
+  {
+    "id": 93,
+    "tema": "Tema 19 - Diarrea y saneamiento",
+    "pregunta": "Según el tema, ¿qué medida preventiva aparece con mayor reducción porcentual de casos de diarrea?",
+    "opciones": [
+      "Mejorar abastecimiento de agua, siempre 80%.",
+      "No tratar agua bebida, 39%.",
+      "Aumentar consumo de sal, 50%.",
+      "Medidas de higiene, incluida educación sanitaria y lavado de manos, alrededor del 45%.",
+      "Eliminar vacunación, 60%."
+    ],
+    "correcta": "D",
+    "explicacion": "Los apuntes indican higiene 45%, saneamiento 32%, calidad de agua bebida 35-39% y abastecimiento 6-21%."
+  },
+  {
+    "id": 94,
+    "tema": "Tema 20 - Zoonosis",
+    "pregunta": "¿Cuál de las siguientes clasificaciones de zoonosis por ciclo es correcta?",
+    "opciones": [
+      "Ciclozoonosis: reservorio no animal; directa: maduración en dos vertebrados.",
+      "Zoonosis directa: vertebrado a vertebrado; ciclozoonosis: más de un vertebrado; metazoonosis: vertebrado e invertebrado; saprozoonosis: reservorio no animal.",
+      "Directa: necesita vector; metazoonosis: solo humanos; saprozoonosis: solo aves.",
+      "Zoonosis directa: siempre por agua contaminada.",
+      "Todas las zoonosis son alimentarias."
+    ],
+    "correcta": "B",
+    "explicacion": "Es la clasificación del tema con ejemplos como rabia, tenia/quiste hidatídico, dengue y larva migrans."
+  },
+  {
+    "id": 95,
+    "tema": "Tema 20 - Tétanos",
+    "pregunta": "¿Qué afirmación sobre tétanos es correcta?",
+    "opciones": [
+      "Nunca requiere manejo de heridas.",
+      "El tétanos neonatal se debe a transmisión sexual.",
+      "Las esporas mueren fácilmente con ebullición y antisépticos comunes.",
+      "Se transmite de persona a persona por gotas respiratorias.",
+      "La infección natural no confiere inmunidad, por lo que también se vacuna al enfermo."
+    ],
+    "correcta": "E",
+    "explicacion": "El tétanos no es contagioso persona-persona y la infección natural no inmuniza; se requiere vacunación y manejo de herida."
+  },
+  {
+    "id": 96,
+    "tema": "Tema 20 - Brucelosis",
+    "pregunta": "¿Qué combinación reservorio-transmisión es más correcta para brucelosis?",
+    "opciones": [
+      "Piel humana; transmisión por rascado.",
+      "Mosquito Aedes; transmisión por picadura.",
+      "Oveja/cabra/vaca/cerdo/perro; transmisión por lácteos sin higienizar, contacto con tejidos infectados o inhalación en establos/mataderos.",
+      "Agua clorada; transmisión por baño recreativo.",
+      "Humano exclusivo; transmisión por aerosoles."
+    ],
+    "correcta": "C",
+    "explicacion": "Los reservorios incluyen oveja, cerdo, vaca y perros; destaca leche cruda/productos sin higienizar, tejidos infectados e inhalación."
+  },
+  {
+    "id": 97,
+    "tema": "Tema 20 - Rabia",
+    "pregunta": "Tras contacto con animal sospechoso de rabia, la profilaxis postexposición debe incluir de entrada:",
+    "opciones": [
+      "Lavado inmediato de la herida al menos 15 minutos y profilaxis/vacunación según indicación.",
+      "Solo antibiótico oral sin limpieza ni vacuna.",
+      "Esperar síntomas neurológicos antes de actuar.",
+      "Aplicar lejía en profundidad como desinfectante principal.",
+      "Cerrar la herida sin lavado para no diseminar virus."
+    ],
+    "correcta": "A",
+    "explicacion": "El tema indica lavado inmediato con agua y jabón/agua al menos 15 minutos y profilaxis postexposición inmediata."
+  },
+  {
+    "id": 98,
+    "tema": "Tema 20 - Ébola y zoonosis emergentes",
+    "pregunta": "Ante un caso de ébola, ¿qué enfoque preventivo recoge el tema?",
+    "opciones": [
+      "Tratamiento domiciliario sin medidas de protección.",
+      "Vacunación universal siempre válida en todos los territorios como única medida.",
+      "Aislamiento del paciente, EPI correcto, desinfección, búsqueda de contactos y educación comunitaria.",
+      "No aislar porque solo se transmite por aire a larga distancia.",
+      "Sacrificar animales sanos sin vigilancia ni investigación."
+    ],
+    "correcta": "C",
+    "explicacion": "El apartado de ébola subraya aislamiento, EPI, desinfección, contactos y comunicación/educación."
+  },
+  {
+    "id": 99,
+    "tema": "Tema 21 - Hepatitis",
+    "pregunta": "¿Qué diferencia principal se recoge entre hepatitis B y C en prevención?",
+    "opciones": [
+      "Hepatitis B tiene vacuna; hepatitis C no dispone actualmente de vacuna.",
+      "Hepatitis C tiene vacuna universal y B no.",
+      "La hepatitis B se transmite exclusivamente por agua.",
+      "Ambas se previenen solo con BCG.",
+      "La hepatitis C nunca cronifica."
+    ],
+    "correcta": "A",
+    "explicacion": "Los apuntes señalan vacunación frente a VHB y ausencia de vacuna frente a VHC."
+  },
+  {
+    "id": 100,
+    "tema": "Tema 21 - Precauciones universales",
+    "pregunta": "Las medidas de protección universales se aplican siempre a:",
+    "opciones": [
+      "Sudor y lágrimas sin sangre visible como únicos fluidos de riesgo.",
+      "Cabello seco y uñas limpias.",
+      "Heces y orina siempre, aunque no contengan sangre visible, excluyendo sangre.",
+      "Aire ambiental sin procedimientos.",
+      "Sangre, semen, secreciones vaginales y líquidos corporales estériles como LCR, pleural o amniótico."
+    ],
+    "correcta": "E",
+    "explicacion": "Se aplican a sangre y fluidos potencialmente infecciosos; heces, saliva, sudor, lágrimas, orina o vómitos solo si contienen sangre visible."
+  },
+  {
+    "id": 101,
+    "tema": "Tema 21 - Accidente punzocortante",
+    "pregunta": "Tras accidente percutáneo con material potencialmente infeccioso, ¿qué conducta coincide con los apuntes?",
+    "opciones": [
+      "Reencapuchar la aguja y esperar.",
+      "No valorar estado serológico de la fuente.",
+      "Cerrar la herida con sutura inmediata sin lavado.",
+      "Retirar objeto, lavar con agua corriente sin restregar dejando sangrar 2-3 minutos, desinfectar y comunicar a Riesgos Laborales.",
+      "Aplicar lejía directamente en la herida."
+    ],
+    "correcta": "D",
+    "explicacion": "El protocolo incluye lavado, sangrado libre, desinfección adecuada, apósito, conocer serología fuente y comunicar."
+  },
+  {
+    "id": 102,
+    "tema": "Tema 21 - VIH",
+    "pregunta": "En VIH, ¿qué afirmación es correcta según los apuntes?",
+    "opciones": [
+      "No existen vacunas recomendadas en pacientes con VIH.",
+      "La profilaxis y tratamiento no tienen impacto epidemiológico.",
+      "Solo afecta a población migrante.",
+      "El huésped susceptible puede ser cualquier persona susceptible.",
+      "Nunca se transmite por sangre."
+    ],
+    "correcta": "D",
+    "explicacion": "Los apuntes y el listado de examen recuerdan que el huésped puede ser cualquier persona susceptible."
+  },
+  {
+    "id": 103,
+    "tema": "Tema 21 - ITS",
+    "pregunta": "¿Cuál de las siguientes medidas forma parte de la prevención de ITS?",
+    "opciones": [
+      "Tratar solo a la persona sintomática y no estudiar contactos.",
+      "Información y educación sanitaria, promoción de medidas barrera, diagnóstico/tratamiento precoz y estudio de contactos.",
+      "No intervenir si la infección es asintomática.",
+      "Evitar cualquier educación sexual.",
+      "Sustituir preservativo por antibiótico preventivo universal."
+    ],
+    "correcta": "B",
+    "explicacion": "El tema incluye educación, barreras, recursos sanitarios, detección/tratamiento y manejo de contactos."
+  },
+  {
+    "id": 104,
+    "tema": "Tema 21 - Sífilis",
+    "pregunta": "La sífilis está causada por:",
+    "opciones": [
+      "Trichomonas vaginalis, un hongo.",
+      "Treponema pallidum, una espiroqueta.",
+      "Clostridium tetani, un protozoo.",
+      "Neisseria meningitidis, un virus.",
+      "Vibrio cholerae, un helminto."
+    ],
+    "correcta": "B",
+    "explicacion": "La sífilis está causada por la bacteria Treponema pallidum, una espiroqueta."
+  },
+  {
+    "id": 105,
+    "tema": "Tema 21 - Tricomoniasis",
+    "pregunta": "La tricomoniasis es causada por:",
+    "opciones": [
+      "Trichomonas vaginalis, un protozoo.",
+      "Virus varicela-zóster.",
+      "Bacillus anthracis.",
+      "Salmonella typhi.",
+      "Treponema pallidum, una espiroqueta."
+    ],
+    "correcta": "A",
+    "explicacion": "El tema identifica Trichomonas vaginalis como protozoo causante."
+  },
+  {
+    "id": 106,
+    "tema": "Tema 22 - Infecciones nosocomiales",
+    "pregunta": "Según los apuntes, una infección nosocomial puede manifestarse:",
+    "opciones": [
+      "Únicamente si aparece antes del ingreso.",
+      "Solo si el paciente nunca ha sido hospitalizado.",
+      "Nunca en quirófano ni UCI.",
+      "Tras el alta; se considera a partir de los 2 días de ingreso en el contexto del examen.",
+      "Solo durante la primera hora de ingreso."
+    ],
+    "correcta": "D",
+    "explicacion": "El listado de examen recuerda que pueden diagnosticarse tras el alta y se mencionan a partir de los 2 días de ingreso."
+  },
+  {
+    "id": 107,
+    "tema": "Tema 22 - EPINE",
+    "pregunta": "El EPINE se describe como:",
+    "opciones": [
+      "Un cuestionario de alcoholismo.",
+      "Una escala de fragilidad.",
+      "Un estudio multicéntrico anual de prevalencia de infecciones nosocomiales en España, realizado desde 1990.",
+      "Una vacuna contra bacterias multirresistentes.",
+      "Un test de motivación para dejar de fumar."
+    ],
+    "correcta": "C",
+    "explicacion": "EPINE es el Estudio de Prevalencia de Infecciones Nosocomiales en España, multicéntrico y anual."
+  },
+  {
+    "id": 108,
+    "tema": "Tema 22 - Infecciones nosocomiales",
+    "pregunta": "Según el listado de examen, la localización más habitual de infección nosocomial en EPINE 2023 fue:",
+    "opciones": [
+      "Hepática por hepatitis A.",
+      "Urinaria.",
+      "Cutánea superficial por pediculosis.",
+      "Ósea por tétanos.",
+      "Ocular."
+    ],
+    "correcta": "B",
+    "explicacion": "El listado de examen destaca la localización urinaria como la más habitual en EPINE 2023."
+  },
+  {
+    "id": 109,
+    "tema": "Tema 22 - PROA y proyectos Zero",
+    "pregunta": "¿Cuál es el objetivo de los PROA?",
+    "opciones": [
+      "Optimizar la prescripción antibiótica, garantizar resultados clínicos y minimizar efectos adversos y resistencias.",
+      "Eliminar higiene de manos.",
+      "Aumentar antibióticos en todos los pacientes sin indicación.",
+      "Aplicar cirugía bariátrica en UCI.",
+      "Sustituir cultivos por intuición clínica."
+    ],
+    "correcta": "A",
+    "explicacion": "Los PROA buscan mejorar uso de antibióticos y reducir daño/resistencias."
+  },
+  {
+    "id": 110,
+    "tema": "Tema 22 - Higiene de manos",
+    "pregunta": "En prevención de infecciones nosocomiales, las manos se consideran:",
+    "opciones": [
+      "Menos importantes que el color del uniforme.",
+      "Solo importantes en pediatría.",
+      "Un reservorio imposible de descontaminar.",
+      "Irrelevantes si se usan guantes una vez al día.",
+      "La principal vía de transmisión de gérmenes durante la atención sanitaria."
+    ],
+    "correcta": "E",
+    "explicacion": "El tema subraya lavado/desinfección de manos como medida general clave."
+  },
+  {
+    "id": 111,
+    "tema": "Tema 23 - Ostomías",
+    "pregunta": "¿Qué emparejamiento de bolsa de ostomía es más correcto?",
+    "opciones": [
+      "Todas las bolsas se cambian igual y no dependen de consistencia.",
+      "Las ostomías digestivas solo son de alimentación.",
+      "Bolsa cerrada: heces líquidas en ileostomías; abierta: solo urostomía.",
+      "La bolsa de dos piezas exige despegar el anillo en cada cambio.",
+      "Bolsa abierta: heces líquidas en ileostomías/colostomías ascendentes; cerrada: heces formadas en descendentes/sigmoidostomías."
+    ],
+    "correcta": "E",
+    "explicacion": "El tema diferencia bolsas abiertas para heces líquidas y cerradas para formadas; las de dos piezas permiten cambiar bolsa sin despegar anillo."
+  },
+  {
+    "id": 112,
+    "tema": "Tema 23 - Cuidados de estoma",
+    "pregunta": "En el cambio de bolsa de ostomía, los apuntes remarcan:",
+    "opciones": [
+      "Retirar la bolsa previa de arriba hacia abajo y colocar la nueva de abajo hacia arriba.",
+      "No preparar material antes.",
+      "Retirar y colocar siempre de izquierda a derecha.",
+      "No secar la piel antes de colocar.",
+      "Usar alcohol sobre mucosa del estoma en todos los cambios."
+    ],
+    "correcta": "A",
+    "explicacion": "El procedimiento destaca retirada de arriba hacia abajo, limpieza/secado/preparación y colocación de abajo a arriba."
+  },
+  {
+    "id": 113,
+    "tema": "Tema 24 - Cirugía menor",
+    "pregunta": "La cirugía menor se define mejor como:",
+    "opciones": [
+      "Procedimientos sencillos, cortos, en tejidos superficiales accesibles, con anestesia local y bajo riesgo de complicaciones.",
+      "Intervención exclusivamente hospitalaria de UCI.",
+      "Procedimientos de alta complejidad en cavidad torácica.",
+      "Cirugía mayor abdominal con anestesia general.",
+      "Toda cirugía que dura más de 6 horas."
+    ],
+    "correcta": "A",
+    "explicacion": "El tema caracteriza cirugía menor por superficialidad, corta duración, anestesia local y baja complejidad."
+  },
+  {
+    "id": 114,
+    "tema": "Tema 24 - Electrocirugía",
+    "pregunta": "En electrocirugía, el mecanismo básico descrito es:",
+    "opciones": [
+      "Corriente eléctrica que calienta rápidamente el agua celular, la vaporiza y rompe/corta tejido o coagula.",
+      "Aplicación de antibiótico tópico para cerrar heridas.",
+      "Ultrasonido diagnóstico sin efecto térmico.",
+      "Inyección de vacuna antitetánica.",
+      "Congelación del tejido por nitrógeno exclusivamente."
+    ],
+    "correcta": "A",
+    "explicacion": "La electrocirugía usa corriente para cortar, extirpar o coagular mediante efecto térmico celular."
+  },
+  {
+    "id": 115,
+    "tema": "Tema 24 - Suturas",
+    "pregunta": "La sutura continua está contraindicada especialmente si:",
+    "opciones": [
+      "El paciente es adulto joven sano.",
+      "Se desea aproximación estética en herida limpia.",
+      "Existe sospecha de infección o herida muy contaminada porque dificulta drenaje.",
+      "La herida está limpia y lineal.",
+      "La piel es seca."
+    ],
+    "correcta": "C",
+    "explicacion": "Los apuntes advierten que dificulta el drenaje y está contraindicada en sospecha de infección o heridas muy contaminadas."
+  },
+  {
+    "id": 116,
+    "tema": "Tema 24 - Heridas crónicas",
+    "pregunta": "En el modelo TIME de preparación del lecho de la herida, ¿qué componente NO pertenece a las siglas?",
+    "opciones": [
+      "Tejido no viable.",
+      "Tabaquismo como letra T del acrónimo.",
+      "Borde/epitelización.",
+      "Infección/inflamación.",
+      "Manejo de la humedad."
+    ],
+    "correcta": "B",
+    "explicacion": "TIME se refiere a Tissue, Infection/Inflammation, Moisture y Edge; tabaquismo es relevante clínicamente, pero no letra del acrónimo."
+  },
+  {
+    "id": 117,
+    "tema": "Tema 25 - Fragilidad",
+    "pregunta": "En el SPPB, una puntuación menor de 10 se interpreta como:",
+    "opciones": [
+      "Persona frágil.",
+      "Dependencia alcohólica.",
+      "Tabaquismo de alta dependencia.",
+      "Persona sin fragilidad garantizada.",
+      "Diagnóstico de VIH."
+    ],
+    "correcta": "A",
+    "explicacion": "El tema indica que el SPPB puntúa de 0 a 12 y <10 se considera fragilidad."
+  },
+  {
+    "id": 118,
+    "tema": "Tema 25 - Fragilidad",
+    "pregunta": "El test de velocidad de la marcha del SPPB consiste en:",
+    "opciones": [
+      "Mantener apnea 15 segundos.",
+      "Caminar 30 minutos y contar UBE.",
+      "Subir 20 pisos y medir lactato.",
+      "Correr 100 metros a máxima velocidad.",
+      "Caminar 4 metros a paso normal 3 veces y usar el menor tiempo para puntuar."
+    ],
+    "correcta": "E",
+    "explicacion": "Los apuntes describen caminar 4 metros tres veces, registrando el menor tiempo."
+  },
+  {
+    "id": 119,
+    "tema": "Tema 26 - Enfermería comunitaria y AP",
+    "pregunta": "La Declaración de Alma-Ata de 1978 se asocia con:",
+    "opciones": [
+      "La creación de la escala Fagerström.",
+      "El lema “salud para todos” y el impulso de la Atención Primaria de Salud.",
+      "El desarrollo de la cirugía bariátrica.",
+      "La erradicación mundial de la gripe.",
+      "La prohibición exclusiva del alcohol."
+    ],
+    "correcta": "B",
+    "explicacion": "Los apuntes vinculan Alma-Ata con “salud para todos” y Atención Primaria."
+  },
+  {
+    "id": 120,
+    "tema": "Tema 26 - Determinantes sociales",
+    "pregunta": "¿Qué afirmación distingue condicionantes y determinantes sociales según el esquema de los apuntes?",
+    "opciones": [
+      "Los determinantes sociales solo afectan a enfermedades infecciosas.",
+      "Condicionantes: no modificables como edad, red de apoyo, género, educación o discapacidad; determinantes: circunstancias de vida y entorno social.",
+      "Determinantes y condicionantes son siempre factores genéticos únicamente.",
+      "La red de apoyo carece de influencia.",
+      "La educación nunca se considera en salud comunitaria."
+    ],
+    "correcta": "B",
+    "explicacion": "El tema diferencia condicionantes sociales no modificables y determinantes como circunstancias sociales en las que vive la persona."
+  },
+  {
+    "id": 121,
+    "tema": "Preguntas transversales de examen",
+    "pregunta": "¿Cuál de estas opciones es una recomendación de “NO HACER”?",
+    "opciones": [
+      "Obligación de hacer todas las pruebas disponibles.",
+      "Programa para aumentar antibióticos sin indicación.",
+      "Sistema de puntuación de consumo de cannabis.",
+      "Escala de motivación tabáquica.",
+      "Estrategia del Ministerio para abandonar prácticas clínicas de escasa evidencia científica."
+    ],
+    "correcta": "E",
+    "explicacion": "El listado de examen define las recomendaciones de NO HACER como abandono de prácticas clínicas de escasa evidencia."
+  },
+  {
+    "id": 122,
+    "tema": "Preguntas transversales de examen",
+    "pregunta": "¿Cuál NO es una vía de transmisión de microorganismos?",
+    "opciones": [
+      "Vector o huésped intermediario.",
+      "Gotas respiratorias.",
+      "Agua/alimentos contaminados.",
+      "Contacto directo.",
+      "Difusión térmica."
+    ],
+    "correcta": "E",
+    "explicacion": "El listado de examen identifica “difusión térmica” como opción que no corresponde a vía de transmisión."
+  },
+  {
+    "id": 123,
+    "tema": "Preguntas transversales de examen",
+    "pregunta": "En comunicación, permitir que los derechos de los demás pasen por encima de los propios corresponde a estilo:",
+    "opciones": [
+      "Motivacional avanzado.",
+      "Asertivo.",
+      "Epidemiológico.",
+      "Pasivo.",
+      "Agresivo."
+    ],
+    "correcta": "D",
+    "explicacion": "El estilo pasivo se caracteriza por ceder derechos propios ante los de los demás."
+  },
+  {
+    "id": 124,
+    "tema": "Preguntas transversales de examen",
+    "pregunta": "Un cribado poblacional se justifica mejor cuando:",
+    "opciones": [
+      "Mejora el pronóstico de los casos detectados precozmente.",
+      "No cambia supervivencia ni morbilidad.",
+      "Detecta enfermedades irrelevantes sin tratamiento.",
+      "Se aplica solo a personas con síntomas graves.",
+      "Sustituye por completo al diagnóstico clínico."
+    ],
+    "correcta": "A",
+    "explicacion": "El listado de examen recuerda que el cribado poblacional busca mejorar el pronóstico de los casos."
+  }
+];
+const letras = ['A','B','C','D','E'];
+let preguntas = [...bancoPreguntas];
+let respuestas = Array(preguntas.length).fill(null);
+let indiceActual = 0;
+const $ = id => document.getElementById(id);
+const fmt = n => (Math.round(n * 100) / 100).toString().replace('.', ',');
+function inicializarTemas(){
+  const select = $('topicFilter');
+  const temas = [...new Set(bancoPreguntas.map(p => p.tema))];
+  temas.forEach(t => { const opt=document.createElement('option'); opt.value=t; opt.textContent=t; select.appendChild(opt); });
+}
+function resetCon(nuevas){ preguntas = nuevas; respuestas = Array(preguntas.length).fill(null); indiceActual = 0; $('resultsCard').classList.remove('visible'); $('quizCard').classList.remove('hidden'); $('reviewList').classList.add('hidden'); $('reviewBtn').textContent='Ver revisión'; render(); scrollTo({top:0,behavior:'smooth'}); }
+function stats(){ let a=0,f=0,s=0; respuestas.forEach(r=>{ if(r===null) s++; else if(r.esCorrecta) a++; else f++; }); const p=f*0.25; const nota=Math.max(0,a-p); return {a,f,s,p,nota,n10: preguntas.length ? nota/preguntas.length*10 : 0}; }
+function cab(){ const st=stats(); const resp=preguntas.length-st.s; const prog=preguntas.length ? Math.round(resp/preguntas.length*100) : 0; $('questionCounter').textContent = preguntas.length ? `${indiceActual+1} / ${preguntas.length}` : '0 / 0'; $('correctCounter').textContent=st.a; $('wrongCounter').textContent=st.f; $('unansweredCounter').textContent=st.s; $('progressText').textContent=`${prog}% respondido`; $('progressBar').style.width=`${prog}%`; }
+function render(){ if(!preguntas.length){ $('quizCard').classList.add('hidden'); $('resultsCard').classList.add('visible'); $('summaryText').innerHTML='<p>No hay preguntas para este filtro.</p>'; cab(); return; } const p=preguntas[indiceActual]; cab(); $('topicPill').textContent=p.tema; $('questionText').textContent=`${p.id}. ${p.pregunta}`; const box=$('options'); box.innerHTML=''; const feedback=$('feedback'); feedback.className='feedback'; feedback.innerHTML=''; const ya=respuestas[indiceActual]; p.opciones.forEach((op,i)=>{ const b=document.createElement('button'); b.className='option'; b.type='button'; b.innerHTML=`<span class="letter">${letras[i]}</span><span>${op}</span>`; b.onclick=()=>responder(letras[i], op); if(ya){ b.disabled=true; if(letras[i]===p.correcta) b.classList.add('correct'); if(letras[i]===ya.letra && !ya.esCorrecta) b.classList.add('incorrect'); } box.appendChild(b); }); if(ya){ mostrarFeedback(ya.esCorrecta, p); } $('prevBtn').disabled=indiceActual===0; $('nextBtn').textContent=indiceActual===preguntas.length-1?'Finalizar':'Siguiente'; }
+function mostrarFeedback(ok,p){ const f=$('feedback'); f.className=`feedback visible ${ok?'ok':'bad'}`; const txt = ok ? 'Correcto.' : `Incorrecto. La respuesta correcta es ${p.correcta}.`; f.innerHTML=`<strong>${txt}</strong><br>${p.explicacion}`; }
+function responder(letra, elegida){ const p=preguntas[indiceActual]; const ok=letra===p.correcta; respuestas[indiceActual]={letra,elegida,esCorrecta:ok}; render(); }
+function next(){ if(indiceActual<preguntas.length-1){ indiceActual++; render(); $('quizCard').scrollIntoView({block:'start',behavior:'smooth'}); } else resultados(); }
+function prev(){ if(indiceActual>0){ indiceActual--; render(); $('quizCard').scrollIntoView({block:'start',behavior:'smooth'}); } }
+function skip(){ respuestas[indiceActual]=null; if(indiceActual<preguntas.length-1) next(); else resultados(); }
+function resultados(){ const st=stats(); $('quizCard').classList.add('hidden'); $('resultsCard').classList.add('visible'); $('totalLabel').textContent=`Nota sobre ${preguntas.length}`; $('scoreTotal').textContent=`${fmt(st.nota)} / ${preguntas.length}`; $('score10').textContent=`${fmt(st.n10)} / 10`; $('summaryText').innerHTML=`<p><strong>Aciertos:</strong> ${st.a}</p><p><strong>Fallos:</strong> ${st.f}</p><p><strong>Sin responder:</strong> ${st.s}</p><p><strong>Penalización:</strong> -${fmt(st.p)} puntos</p>`; revision(); cab(); scrollTo({top:0,behavior:'smooth'}); }
+function revision(){ const box=$('reviewList'); box.innerHTML=''; preguntas.forEach((p,i)=>{ const r=respuestas[i]; let estado='unanswered',tit='Sin responder',ru='No respondida'; if(r){ estado=r.esCorrecta?'correct':'incorrect'; tit=r.esCorrecta?'Correcta':'Incorrecta'; ru=`${r.letra}. ${r.elegida}`; } const d=document.createElement('div'); d.className=`review-item ${estado}`; const correctaTxt = `${p.correcta}. ${p.opciones[letras.indexOf(p.correcta)]}`; d.innerHTML=`<strong>${p.id}. ${tit}</strong><p>${p.pregunta}</p><p><strong>Tu respuesta:</strong> ${ru}<br><strong>Correcta:</strong> ${correctaTxt}</p><p>${p.explicacion}</p>`; box.appendChild(d); }); }
+function reiniciar(){ resetCon([...preguntas]); }
+function mezclar(){ const arr=[...preguntas]; for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } resetCon(arr); }
+$('prevBtn').onclick=prev; $('nextBtn').onclick=next; $('skipBtn').onclick=skip; $('restartBtn').onclick=reiniciar; $('reviewBtn').onclick=()=>{ $('reviewList').classList.toggle('hidden'); $('reviewBtn').textContent=$('reviewList').classList.contains('hidden')?'Ver revisión':'Ocultar revisión'; }; $('shuffleBtn').onclick=mezclar; $('topicFilter').onchange=e=>{ const val=e.target.value; resetCon(val==='todos'?[...bancoPreguntas]:bancoPreguntas.filter(p=>p.tema===val)); };
+inicializarTemas(); render();
+</script>
+</body>
+</html>
